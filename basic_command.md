@@ -1,4 +1,4 @@
-# 01一些快捷键
+code # 01一些快捷键
 ```bash
 Ctrl+l 清屏
 Ctrl+C 终止执行
@@ -151,6 +151,17 @@ ss
 -4 # 只显示IPv4
 -6 # 只显示IPv6
 ```
+# ps && kill
+```bash
+ps -e # 显示所有进程
+ps -e -f # 显示所有进程详细信息
+ps -a # 只显示有终端的进程(不显示守护进程)
+kill -9 进程ID # 强制关闭进程
+```
+# top
+```bash
+
+```
 # /etc/目录
 |目录 |作用  |备注 |
 |:---:|:---:|:---:|
@@ -166,8 +177,11 @@ ss
 |/etc/ufw/|防火墙配置目录||
 |/etc/ssh/sshd_config|SSH远程登录配置|改端口,禁止密码登录...|
 
-# 一些环境变量
+# 环境变量
 ```bash
+env # 显示所有环境变量
+env |  grep "PATH" # 查看PATH环境变量
+
 echo $SHELL # 当前用的Shell
 echo $PATH # 系统找命令的路径
 echo $HOME # 当前用户的主目录
@@ -175,4 +189,16 @@ echo $USER # 当前用户名
 echo $PWD # 当前工作目录
 echo $LANG # 语言/字符编码
 echo $PS1 # 当前命令行提示符样式
+
+export MY_NAME="Win_Xi" # 添加临时环境变量
+
+配置在~/.bashrc 针对当前用户有效 # 永久添加环境变量
+配置在/etc/profile 针对所有用户有效 # 永久添加环境变量
 ```
+# hostnamectl 
+```bash
+hostnamectl set-hostname "新名字"
+hostnamectl # 等价于hostnamectl status
+hostnamectl status
+```
+

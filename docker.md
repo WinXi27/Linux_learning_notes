@@ -1,5 +1,5 @@
 # docker简介
-
+docker是开源的容器化平台
 # docker命令
 ```bash
 docker --version # 查看版本

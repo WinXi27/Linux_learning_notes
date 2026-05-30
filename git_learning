@@ -23,7 +23,13 @@ git status # 查看当前文件状态
 
 git log # 查看提交历史
 
-git checkout -- 文件名 #  
+git restore test01.md # 把暂存区的文件覆盖工作区
+git restore --staged test01.md # 把暂存区的文件撤回到工作区
+
+git reset --soft HEAD~1 # 撤销最近的一次提交
+git reset --hard HEAD~1 # 彻底回退到上一个版本
+git reset --mixed HEAD~1 # 撤销提交,代码回到工作区
+
 ```
 # 小注意
 ```bash
@@ -31,6 +37,4 @@ git checkout -- 文件名 #
 git branch fearture/note-xxx
 git branch bugfix/note-xxx 
 eg: feature/note-git
-
-
 ```

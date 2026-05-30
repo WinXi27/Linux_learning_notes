@@ -1,0 +1,22 @@
+# git介绍
+Git是一个免费开源的**分布式版本控制系统**
+![alt text](image.png)
+# git命令
+```bash
+git config --list # 查看用户配置
+git config --global user.name "用户名" # 设置用户签名 
+git config --global user.email "用户邮箱" # 设置用户邮箱
+
+git init # 把一个文件夹变为一个git仓库
+
+git add 文件名 # 把文件添加到暂存区
+git add . # 添加所有文件
+
+git commit -m "备注" # 把暂存区的修改提交到本地仓库
+
+git status # 查看当前文件状态
+
+git log # 查看提交历史
+
+git checkout -- 文件名 #  
+```

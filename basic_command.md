@@ -106,8 +106,65 @@ systemctl stop ssh
 systemctl enable ssh
 systemctl disable ssh
 systemctl restart ssh
+systemctl is-enabled ssh # 查看ssh服务是否开机自启
 
+systemctl list-units --type=service # 查看所有服务
+systemctl list-units --type=service --state=running # 查看所有正在运行的服务
+systemctl list-unit-files --type=service # 查看系统一共装了什么服务
 ```
+# curl 
+curl是命令行中的浏览器
+作用: 向一个**网页/IP:端口**发送请求,获取内容
+```bash
+curl localhost:8080 # 
+cur -o index.html https://baidu.com
+cur -c cookies.txt https://baidu.com
+```
+# wget
+下载文件的工具
+```bash
+wget -O myfile.zip http://xxx/fiel.zip # 下载并改名
+wget -P ~/downloads/ http://xxx/fiel.zip # 指定保存目录
+wget -c http://xxx/fiel.zip # 断点连续
+wget -b http://xxx/fiel.zip # 后台下载
+```
+# ping && ip && ss
+```bash
+ping baidu.com
+ip a # 查看IP地址
+
+ss
+# 协议类型
+-t # 显示tcp
+-u # 显示udp
+# 显示范围
+-a # all
+-l # listening只显示监听中的套接字
+# 详细信息
+-e, --extended：显示扩展信息（UID、inode、状态细节）
+-p, --processes：显示进程名 / PID（哪个程序在用这个端口，需 root）
+-o, --options：显示TCP 计时器（重传、保活、超时）
+-i, --info：显示TCP 内部信息（拥塞窗口、RTT 等）
+-m, --memory：显示套接字内存占用
+-s, --summary：显示整体统计（TCP/UDP/UNIX 各多少连接）
+# IP版本
+-4 # 只显示IPv4
+-6 # 只显示IPv6
+```
+# /etc/目录
+|目录 |作用  |备注 |
+|:---:|:---:|:---:|
+|/etc/hosts |本地静态域名表|优先级比DNS高|
+|/etc/passwd|所有用户信息|用户名 UID 主目录 登录Shell|
+|/etc/shadow|真正存加密密码|只有root可读|
+|/etcgroup|存用户组列表||
+|/etc/sudoers|谁能sudo,权限怎么分配|必须visudo编辑|
+|/etc/hostname|本机主机名||
+|/etc/profile|所有用户登录时都会执行的全局环境变量||
+|/etc/bashrc|所有用户打开bash时执行||
+|/etc/nginx/|Nginx主配置目录||
+|/etc/ufw/|防火墙配置目录||
+|/etc/ssh/sshd_config|SSH远程登录配置|改端口,禁止密码登录...|
 
 # 一些环境变量
 ```bash

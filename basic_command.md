@@ -61,7 +61,9 @@ data +"格式化字符串"
 
 awk
 sort 
-
+```
+# 用户权限管理
+```bash
 groupadd test
 groupdel test
 useradd -d /user01/ -g group01 user01
@@ -155,8 +157,16 @@ ss
 ```bash
 ps -e # 显示所有进程
 ps -e -f # 显示所有进程详细信息
-ps -a # 只显示有终端的进程(不显示守护进程)
+ps -a # 只显示终端的进程(不显示守护进程)
 kill -9 进程ID # 强制关闭进程
+
+Linux进程的状态: 
+R : Running,运行中,CPU正在跑
+S : Sleep,睡眠,等待事件,大部分都是这个
+T : stopped,停止,被暂停了
+Z : zombie,僵尸,进程死了但是没有回收
+
+
 ```
 # top
 ```bash

@@ -201,4 +201,50 @@ hostnamectl set-hostname "新名字"
 hostnamectl # 等价于hostnamectl status
 hostnamectl status
 ```
+# 关于网络
+现状: 我的电脑是Window操作系统
+在Windows上的VMware运行虚拟机Linux操作系统
+使用VSCode远程连接Linux操作系统
+```bash
+Windows（宿主机）
+│
+├── Clash(端口7897)
+│
+├── VSCode
+│
+└── VMware
+      │
+      └── Linux（虚拟机）
+-------------------------
+
+7897是clash开的一个"接待窗口",地址是127.0.0.1:7897
+谁想使用代理,就把网络请求发送给这个窗口,eg:
+Chrome
+ ↓
+7897
+ ↓
+Clash
+ ↓
+代理服务器
+ ↓
+Google服务器
+
+一个关键问题: Linux的数据包到了宿主机(Windows)后,会不会走clash代理?
+答案: 不一定
+有些配置会走clash: Linux-->Windows-->clash-->国外代理--->目标服务器
+有些配置不会走clash: Linux-->Windows-->目标服务器
+```
+# 给Linux操作系统配置clash代理
+假设clash的端口是7897
+```bash
+1. 打开clash的允许局域网连接(因为clash默认只会监听127.0.0.1本机)
+2. 在CMD上使用ipconfig查看Windows内网IP地址
+3. 在Linux操作系统上执行:
+vim ~/zshrc # 打开zsh的用户配置文件,写入下面内容
+export http_proxy="http://Windows内网地址:7897" # 所有http协议的软件都会发送给这个7897地址
+export https_proxy="http://Windows内网地址:7897" # 所有https协议的软件都会发送给7897这个端口
+4. 写入后,执行source ~/.zshrc 
+5. 使用curl ip.sb查看出口服务器的公网地址
+6. 使用curl cip.cc/公网IP地址 查看公网地址对应的地区是不是国外
+```
 

@@ -6,6 +6,7 @@ Git是一个免费开源的**分布式版本控制系统**
 git config --list # 查看用户配置
 git config --global user.name "用户名" # 设置用户签名 
 git config --global user.email "用户邮箱" # 设置用户邮箱
+git remote set-url origin "你的仓库地址"
 
 git init # 把一个文件夹变为一个git仓库
 
@@ -31,10 +32,4 @@ git reset --hard HEAD~1 # 彻底回退到上一个版本
 git reset --mixed HEAD~1 # 撤销提交,代码回到工作区
 
 ```
-# 小注意
-```bash
-使用 
-git branch fearture/note-xxx
-git branch bugfix/note-xxx 
-eg: feature/note-git
-```
+

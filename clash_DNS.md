@@ -122,6 +122,7 @@ Linux <--> Windows
 - 2.查看Windows内网IP
 - 3.Linux设置proxy=Windows内网IP:7897 (7897端口是Windows的clash监听端口)
 (本质:只要Linux可以顺畅访问Windows的7897端口,就可以使用Windows代理)
-
+# git remote set-url origin git@github远程仓库地址
+是设置远程仓库的地址为 github 上的地址，使用 ssh 连接
 
 

@@ -1,64 +1,58 @@
+# ssh介绍
+ssh=安全的加密网络协议,用于在不安全网络上执行远程命令和传输数据
+## 一些概念
+ssh=客户端工具,用来发送连接
+sshd=服务端程序,用来接收连接
+SSH=一种机密通信协议
+主要工作:
+- SSH用来远程连接
+- 需要sshd(服务端)
+- 默认22端口
+- ssh user_name@ip 发起连接
+- 建立加密通道
+## ssh客户端&&服务端模型
+客户端(ssh)
+↓ 加密连接
+SSH协议
+↓ 
+服务器(sshd)
+## ssh命令
+```bash
+ssh user_name@ip "ls" # 远程执行命令
+scp ./file01.txt user_name@ip:/path # 文件传输
+
+```
 # git介绍
 Git是一个免费开源的**分布式版本控制系统**
 ![alt text](image.png)
-# git命令
+# git command 
 ```bash
-git config --list # 查看用户配置
-git config --global user.name "用户名" # 设置用户签名 
-git config --global user.email "用户邮箱" # 设置用户邮箱
-git remote set-url origin "你的仓库地址"
-
-git init # 把一个文件夹变为一个git仓库
-
+git config --list # 查看所有配置
+git config --global user.name # 查看用户名
+git config --global user.name "new_user_name" # 设置新的用户名
+git config --global user.email # 查看用户邮箱
+git config --global user.email "new_user_email" # 设置你用户邮箱
+git clone "url" # 克隆仓库到本地
+git remote -v # 查看所有连接的远程地址
+git remote set-url origin "地址" # 设置origin的仓库地址
+git remote add origin "地址" # 添加origin的地址
+git init # 把当前文件夹初始化为仓库
 git branch # 查看所有分支
-git branch feature/note-git # 创建一个dev01分支
-git switch main # 切换到main分支
-git switch -c feature/note-git # 创建并切换到分支
-
-git add 文件名 # 把文件添加到暂存区
-git add . # 添加所有文件
-
-git commit -m "备注" # 把暂存区的修改提交到本地仓库
-
-git status # 查看当前文件状态
-
+git branch "branch_name" # 创建一条新分支
+git switch "branch_name" # 切换到指定分支
+git switch -c "branch_name" # 创建并切换到新分支
+git add . # 把所有修改的文件加入暂存区
+git commit -m "提交备注" # 把暂存区的修改提交到本地仓库
+git status # 查看状态
 git log # 查看提交历史
-
+git merge "branch_name" # 把指定分支与main分支合并
+```
+```bash
 git restore test01.md # 把暂存区的文件覆盖工作区
 git restore --staged test01.md # 把暂存区的文件撤回到工作区
-
 git reset --soft HEAD~1 # 撤销最近的一次提交
 git reset --hard HEAD~1 # 彻底回退到上一个版本
 git reset --mixed HEAD~1 # 撤销提交,代码回到工作区
-```
-# git工作的命令流程
-```bash
-git switch -c b01 
-# 开发修改
-git status 
-git add .
-git commit -m "备注"
-git switch main
-git pull origin main
-git merge b01
-git push origin main
-```
-# 大公司一般开发流程
-```bash
-git switch -c b01
-# 修改代码
-git add .
-git commit -m "备注"
-git push -u origin b01
-# 在github创建新的PR
-# 代码审核
-```
-# 远程仓库
-```bash
-git remote add origin "地址" # 新增远程仓库
-git remote set-url origin "地址" # 修改已有的远程仓库
-git remote -v # 查看现有绑定的远程仓库s
-
 ```
 # 从github连接仓库的三种方式
 https && ssh && github CLI

@@ -30,6 +30,19 @@ git restore --staged test01.md # 把暂存区的文件撤回到工作区
 git reset --soft HEAD~1 # 撤销最近的一次提交
 git reset --hard HEAD~1 # 彻底回退到上一个版本
 git reset --mixed HEAD~1 # 撤销提交,代码回到工作区
-
 ```
+# git工作的命令流程
+```bash
+git switch -c b01 
+# 开发修改
+git status 
+git add .
+git commit -m "备注"
+git switch main
+git pull origin main
+git merge b01
+git push origin main
+```
+
+
 

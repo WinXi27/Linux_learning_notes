@@ -53,5 +53,10 @@ git push -u origin b01
 # 在github创建新的PR
 # 代码审核
 ```
-
+# 远程仓库
+```bash
+git remote add origin "地址" # 新增远程仓库
+git remote set-url origin "地址" # 修改已有的远程仓库
+git remote -v # 查看现有绑定的远程仓库
+```
 

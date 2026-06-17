@@ -43,6 +43,15 @@ git pull origin main
 git merge b01
 git push origin main
 ```
-
+# 大公司一般开发流程
+```bash
+git switch -c b01
+# 修改代码
+git add .
+git commit -m "备注"
+git push -u origin b01
+# 在github创建新的PR
+# 代码审核
+```
 
 

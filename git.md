@@ -57,6 +57,23 @@ git push -u origin b01
 ```bash
 git remote add origin "地址" # 新增远程仓库
 git remote set-url origin "地址" # 修改已有的远程仓库
-git remote -v # 查看现有绑定的远程仓库
+git remote -v # 查看现有绑定的远程仓库s
+
 ```
+# 从github连接仓库的三种方式
+https && ssh && github CLI
+## https
+用账号+密码/Token来访问仓库
+## ssh
+用密钥连接github
+eg: git clone git@github.com:user/repo.git
+
+### ssh简介
+ssh是一种**安全远程通信协议(protocol)**
+作用: 在不安全网络上安全地远程操作另一台机器
+需要:
+- 客户端(ssh client)
+- 服务端(ssh server,通常叫sshd)
+## github CLI
+github官方的命令行工具
 

@@ -1,4 +1,4 @@
-# ssh介绍
+# ssh(Secure Shell)介绍
 ssh=安全的加密网络协议,用于在不安全网络上执行远程命令和传输数据
 ## 一些概念
 ssh=客户端工具,用来发送连接
@@ -20,7 +20,6 @@ SSH协议
 ```bash
 ssh user_name@ip "ls" # 远程执行命令
 scp ./file01.txt user_name@ip:/path # 文件传输
-
 ```
 # git介绍
 Git是一个免费开源的**分布式版本控制系统**
@@ -61,7 +60,6 @@ https && ssh && github CLI
 ## ssh
 用密钥连接github
 eg: git clone git@github.com:user/repo.git
-
 ### ssh简介
 ssh是一种**安全远程通信协议(protocol)**
 作用: 在不安全网络上安全地远程操作另一台机器

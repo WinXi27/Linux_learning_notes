@@ -68,4 +68,9 @@ ssh是一种**安全远程通信协议(protocol)**
 - 服务端(ssh server,通常叫sshd)
 ## github CLI
 github官方的命令行工具
-
+# git的配置信息
+git的配置分为两类: 全局配置&&本地仓库配置
+```bash
+git config --list # 查看所有配置信息
+git config --global user.name ""
+```

@@ -8,5 +8,6 @@ MySql就是**存数据+查数据**的工具
 
 # mysql commmand
 
+cs
 
 

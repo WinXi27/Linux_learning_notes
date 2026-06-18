@@ -21,10 +21,10 @@ SSH协议
 ssh user_name@ip "ls" # 远程执行命令
 scp ./file01.txt user_name@ip:/path # 文件传输
 ```
-# git介绍
+# git
 Git是一个免费开源的**分布式版本控制系统**
 ![alt text](image.png)
-# git command 
+## git command 
 ```bash
 git config --list # 查看所有配置
 git config --global user.name # 查看用户名
@@ -45,8 +45,6 @@ git commit -m "提交备注" # 把暂存区的修改提交到本地仓库
 git status # 查看状态
 git log # 查看提交历史
 git merge "branch_name" # 把指定分支与main分支合并
-```
-```bash
 git restore test01.md # 把暂存区的文件覆盖工作区
 git restore --staged test01.md # 把暂存区的文件撤回到工作区
 git reset --soft HEAD~1 # 撤销最近的一次提交
@@ -72,5 +70,12 @@ github官方的命令行工具
 git的配置分为两类: 全局配置&&本地仓库配置
 ```bash
 git config --list # 查看所有配置信息
+<<<<<<< HEAD
 git config --global user.name ""
 ```
+=======
+git config --global user.email # 查看邮箱
+git config --global user.name "WinXi" # 修改用户名
+```
+
+>>>>>>> e9c4ec7 (6.18第一次提交git add .)

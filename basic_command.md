@@ -151,16 +151,25 @@ ss
 -4 # 只显示IPv4
 -6 # 只显示IPv6
 ```
-# ps && kill
+# 进程基础
+程序=存放在硬盘上的静态文件
+进程=把这个程序加载到内存,CPU正在运行的实例
+同一个程序可以产生多个进程
+进程是操作系统最小资源分配单位
+## 终端tty与伪终端pts
+终端tty: 真实的终端,物理控制台终端
+伪终端pts(pseudo-terminal): 虚拟终端
+ 
+## command
 ```bash
-ps -e # 显示所有进程
-ps -e -f # 显示所有进程详细信息
-ps -a # 只显示有终端的进程(不显示守护进程)
-kill -9 进程ID # 强制关闭进程
-```
-# top
-```bash
-
+who # 显示所有交互式登录终端会话
+ps # 默认只显示当前终端自己启动的进程
+ps -a # 显示系统上所有绑定了终端设备的进程
+ps aux # 查看系统所有进程
+top # 实时查看进程信息
+nohup sleep 100 & # 后台运行sleep进程,不挂断
+jobs # 查看当前终端的所有运行进程
+fg %1 # 把编号为1的进程拿到前台
 ```
 # /etc/目录
 |目录 |作用  |备注 |
@@ -200,51 +209,5 @@ export MY_NAME="Win_Xi" # 添加临时环境变量
 hostnamectl set-hostname "新名字"
 hostnamectl # 等价于hostnamectl status
 hostnamectl status
-```
-# 关于网络
-现状: 我的电脑是Window操作系统
-在Windows上的VMware运行虚拟机Linux操作系统
-使用VSCode远程连接Linux操作系统
-```bash
-Windows（宿主机）
-│
-├── Clash(端口7897)
-│
-├── VSCode
-│
-└── VMware
-      │
-      └── Linux（虚拟机）
--------------------------
-
-7897是clash开的一个"接待窗口",地址是127.0.0.1:7897
-谁想使用代理,就把网络请求发送给这个窗口,eg:
-Chrome
- ↓
-7897
- ↓
-Clash
- ↓
-代理服务器
- ↓
-Google服务器
-
-一个关键问题: Linux的数据包到了宿主机(Windows)后,会不会走clash代理?
-答案: 不一定
-有些配置会走clash: Linux-->Windows-->clash-->国外代理--->目标服务器
-有些配置不会走clash: Linux-->Windows-->目标服务器
-```
-# 给Linux操作系统配置clash代理
-假设clash的端口是7897
-```bash
-1. 打开clash的允许局域网连接(因为clash默认只会监听127.0.0.1本机)
-2. 在CMD上使用ipconfig查看Windows内网IP地址
-3. 在Linux操作系统上执行:
-vim ~/zshrc # 打开zsh的用户配置文件,写入下面内容
-export http_proxy="http://Windows内网地址:7897" # 所有http协议的软件都会发送给这个7897地址
-export https_proxy="http://Windows内网地址:7897" # 所有https协议的软件都会发送给7897这个端口
-4. 写入后,执行source ~/.zshrc 
-5. 使用curl ip.sb查看出口服务器的公网地址
-6. 使用curl cip.cc/公网IP地址 查看公网地址对应的地区是不是国外
 ```
 

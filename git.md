@@ -26,21 +26,30 @@ Git是一个免费开源的**分布式版本控制系统**
 ![alt text](image.png)
 ## git command 
 ```bash
-git config --list # 查看所有配置
+关于配置
+git config --list # 查看所有配置 
 git config --global user.name # 查看用户名
-git config --global user.name "new_user_name" # 设置新的用户名
 git config --global user.email # 查看用户邮箱
-git config --global user.email "new_user_email" # 设置你用户邮箱
-git clone "url" # 克隆仓库到本地
-git remote -v # 查看所有连接的远程地址
-git remote set-url origin "地址" # 设置origin的仓库地址
-git remote add origin "地址" # 添加origin的地址
-git init # 把当前文件夹初始化为仓库
-git branch # 查看所有分支
-git branch "branch_name" # 创建一条新分支
-git switch "branch_name" # 切换到指定分支
-git switch -c "branch_name" # 创建并切换到新分支
-git add . # 把所有修改的文件加入暂存区
+git config --global user.name "new_user_name" # 设置新的用户名
+git config --global user.emali "new_user_email" # 设置新的用户邮箱
+
+关于远程仓库
+git remote -v # 查看verbose远程仓库信息
+git remote add 别名 "仓库地址" # 添加新的远程仓库
+git remote set-url 别名 "仓库地址" # 设置远程仓库地址(原来已经存在的仓库)
+
+关于工作流程
+git init # 把当前文件夹初始化为git仓库
+git status # 查看git状态
+git clone "url" # 克隆地址
+git branch b01 && git switch b01 # 创建b01分支&&切换到b01分支
+git switch -c b01 # 切换到b01分支,-c自动create
+git add . # 把工作区的所有修改全部都加入暂存区
+git add test01.md test02.md # 把工作区的test01.md和test02.md添加到暂存区
+git commit -m "提交备注" # 把暂存区的所有修改全部提交到本地
+git 
+```
+
 git commit -m "提交备注" # 把暂存区的修改提交到本地仓库
 git status # 查看状态
 git log # 查看提交历史

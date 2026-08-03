@@ -47,13 +47,20 @@ git switch -c b01 # 切换到b01分支,-c自动create
 git add . # 把工作区的所有修改全部都加入暂存区
 git add test01.md test02.md # 把工作区的test01.md和test02.md添加到暂存区
 git commit -m "提交备注" # 把暂存区的所有修改全部提交到本地
-git 
-```
+git merge "b01" # 把指定分支与main分支合并
 
-git commit -m "提交备注" # 把暂存区的修改提交到本地仓库
-git status # 查看状态
-git log # 查看提交历史
-git merge "branch_name" # 把指定分支与main分支合并
+关于push命令
+git push origin main # 指定远程别名,分支推送
+git push # 分支需要已经绑定upstream
+git push -u origin main # 首次绑定+推送
+
+关于日志
+git log # 查看git提交日志
+
+关于恢复/撤销
+
+```
+```
 git restore test01.md # 把暂存区的文件覆盖工作区
 git restore --staged test01.md # 把暂存区的文件撤回到工作区
 git reset --soft HEAD~1 # 撤销最近的一次提交

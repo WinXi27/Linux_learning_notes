@@ -58,7 +58,8 @@ git push -u origin main # 首次绑定+推送
 git log # 查看git提交日志
 
 关于恢复/撤销
-
+git restore test01.md # 把暂存区的文件覆盖工作区
+git restore 
 ```
 ```
 git restore test01.md # 把暂存区的文件覆盖工作区

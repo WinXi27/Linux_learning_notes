@@ -58,15 +58,11 @@ git push -u origin main # 首次绑定+推送
 git log # 查看git提交日志
 
 关于恢复/撤销
-git restore test01.md # 把暂存区的文件覆盖工作区
-git restore 
-```
-```
-git restore test01.md # 把暂存区的文件覆盖工作区
-git restore --staged test01.md # 把暂存区的文件撤回到工作区
-git reset --soft HEAD~1 # 撤销最近的一次提交
-git reset --hard HEAD~1 # 彻底回退到上一个版本
-git reset --mixed HEAD~1 # 撤销提交,代码回到工作区
+git restore test01.md # 撤销修改
+git restore . # 撤销所有修改
+git reset HEAD 文件名 # 取消add 
+git reset HEAD . # 全部文件取消add
+git reset HEAD~1 # 撤销最近一次提交,代码保留
 ```
 # 从github连接仓库的三种方式
 https && ssh && github CLI

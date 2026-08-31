@@ -1,4 +1,4 @@
-code # 01一些快捷键
+# 01一些快捷键
 ```bash
 Ctrl+l 清屏
 Ctrl+C 终止执行
@@ -10,7 +10,7 @@ Tab 自动补全
 ```
 # 基础命令
 ```bash
-cd /dir01/dir001
+cd /dir01/dir001P
 ls -a -l -t -r -h /path
 mkdir ./dir01
 mkdir -p /lixiang/dir01/dir001
@@ -170,6 +170,10 @@ top # 实时查看进程信息
 nohup sleep 100 & # 后台运行sleep进程,不挂断
 jobs # 查看当前终端的所有运行进程
 fg %1 # 把编号为1的进程拿到前台
+
+echo $$ # 查看当前Shell的PID
+tty # 查看当前使用的终端的目录位置
+
 ```
 # /etc/目录
 |目录 |作用  |备注 |

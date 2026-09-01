@@ -36,7 +36,7 @@ head -15 file01.txt # 查看开头15行内容
 head -n 15 file01.txt
 more /dir01/file01.txt # 分页查看文件内容
 less /dri01/file01.txt # 反向分页查看文件内容
-find -type d -name ".txt" -size -100M
+find -type d -iname ".txt" -size -100M
 ln -s 路径1 路径2
 hostname
 hostnamectl set-name lixiang
@@ -48,9 +48,10 @@ vim file01.txt
 : set nonumber # 不设置数字
 : w # 保存
 : wq # 保存并且退出
+: q! # 不保存,强制退出
 
-data 
-data +"格式化字符串"
+date
+date +"格式化字符串"
 # %Y 2026
 # %y 26
 # %m 12
@@ -62,15 +63,21 @@ data +"格式化字符串"
 awk
 sort 
 
+useradd user01 # 添加user01用户,不会自动创建家目录
+userdel user01 # 删除user01用户,但是不删除user01家目录
+useradd -m user01 # 添加user01用户,自动创建家目录(make directory)
+userdel -r user01 # 删除user01用户,同时删除user01家目录
+useradd -d /user01/ -g group01 user01 # 指定用户家目录位置 指定组
+
 groupadd test
 groupdel test
-useradd -d /user01/ -g group01 user01
-groups user01
-id user01
+usermod -aG user01 group01 # 将user01用户添加到group01组中
 
-getent passwd
+groups user01 # 查看user01的所属组
+id user01 # 查看user01的uid gid groups
+
+getent passwd 
 getend group
-usermod
 
 chmod u=rwx,g=rw,o=x hello.txt
 chmod -R u=rwx,g=rw,o=x dir01
@@ -79,7 +86,6 @@ chmod -R 531 die01
 
 chown lixiang:group01 file01.txt
 chown -R lixiang:group01 dir01
-
 ```
 
 # apt

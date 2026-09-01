@@ -25,6 +25,10 @@ PPID : 父进程ID
 /root : root用户家目录
 /lib : library,库目录
 /tmp : temporary,临时文件目录
+/etc/passwd : 所有用户的信息
+/etc/group : 所有用户组的信息
+/etc/shadow : 所有用户的登录密码
+
 
 # Linux执行命令的过程
 输入的命令分为 内置命令 和 外部命令
@@ -37,6 +41,12 @@ PPID : 父进程ID
 - 子进程运行,产生输出,输出结果送回终端显示
 - 子进程执行结束,控制权交还给父Shell,等待下一条输入
 (当一个子进程的父进程被kill掉,这个子进程就会变为孤儿进程,PPID变为1)
+
+# Linux 用户 && 用户组
+每一个用户都只有一个主用户组,可以有一个或多个附属用户组
+/etc/passwd中存放所有用户的信息
+/etc/shadow中存放所有用户的密码
+/etc/group中存放所有用户组信息
 # DNS域名解析
 域名解析为公网IP地址
 eg: google.com-->IP地址

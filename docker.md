@@ -7,7 +7,7 @@ docker info # 查看系统信息
 docker images # 查看所有本地镜像
 docker search nginx # 搜索镜像,默认是latest
 docker pull nginx # 拉取镜像
-docker nginx:1.25 # 指定拉取镜像的版本
+docker pull nginx:1.25 # 指定拉取镜像的版本
 docker images -q # 查看所有镜像只有ID
 docker rmi nginx # 删除镜像
 docker rmi 镜像ID # 更具镜像ID删除镜像
@@ -39,6 +39,8 @@ docker restart nginx01 # 重启nginx01容器
 docker rm nginx01 # 删除停止的容器
 docker rm -f nginx01 # 强制删除运行中的容器
 docker rm -f $(docker ps -aq) # 一次性删除所有容器
+
+docker inspect my_nginx 查看my_nginx的json文件
 ```
 # 导入导出镜像
 ```bash

@@ -106,13 +106,13 @@ apt show 包名
 
 # systemctl
 ```bash
-systemctl status ssh
-systemctl start ssh
-systemctl stop ssh
-systemctl enable ssh
-systemctl disable ssh
-systemctl restart ssh
-systemctl is-enabled ssh # 查看ssh服务是否开机自启
+systemctl status ssh # 查看ssh服务的状态
+systemctl start ssh # 打开ssh服务
+systemctl stop ssh # 关闭ssh服务
+systemctl restart ssh # 重启ssh服务
+systemctl enable ssh # 开机自启ssh服务
+systemctl disable ssh # 关闭开机自启服务
+systemctl is-enabled ssh # 查看是否开机自启
 
 systemctl list-units --type=service # 查看所有服务
 systemctl list-units --type=service --state=running # 查看所有正在运行的服务

@@ -1,0 +1,127 @@
+# 概念理解
+- 1.systemctl管理的是unit单元,但不是所有Linux服务都一松通过systemctl管理
+- 2.ufw是防火墙管理工具 ufw enable/disable 与 systemctl enable/disable ufw不一样 
+- 3.代理服务商: 购买代理服务商之后,服务商通常会提供一个订阅地址(subscription URL)
+- 订阅地址: 一个用来获取代理配置/节点信息的地址
+- 4.clash: 一个免费的代理客户端/代理软件
+(clash只是导入+解析订阅地址,不是提供节点的代理服务商,不是购买订阅的地方)
+代理服务商: 提供订阅和代理节点
+clash: 使用和管理这些代理节点
+- 5.clash中的系统代理: 对于遵循操作系统代理设置的应用程序,其网络请求会通过clash
+常见模式:
+1)规则模式: 根据配置的规则决定流量任何处理
+2)全局模式: 对进入clash的代理流量同一使用指定代理节点
+3)直连模式: 对进入clash的流量直接连接,不使用代理节点
+- 6.systemctl是与systemd交互的命令行工具
+- 7.服务通常是为了持续提供某种系统功能或后台任务而长期运行的进程
+- 8.
+SSH ---> 提供远程连接
+UFW ---> 控制网络流量是否允许进入服务器
+# 订阅+clash客户端+翻墙
+代理服务商提供订阅地址
+👇
+订阅地址导入clash客户端
+👇
+clash解析订阅
+👇
+代理节点/配置
+👇
+选择节点之后,本机应用通过代理访问网络
+# clash功能
+clash功能:
+|
+|---导入订阅
+|
+|---解析多个代理节点
+|
+|---管理多个代理节点
+|
+|---根据规则决定流量走哪一个节点,直连or代理or拒绝
+- 根据规则决定流量走哪一个节点,直连/拒绝
+- 向操作系统/应用程序提供代理服务
+# 购买vps,自己配置节点
+- 购买vps之后,代理服务商给你一个公网IP地址,登录用户名,登录用户密码
+- 在Windows电脑cmd中执行ssh 用户名字@公网IP,输入密码,成功登录海外服务器
+- 执行sudo -i切换到root用户
+- 配置代理服务端
+# Linux Unit(单元)
+单元unit
+|
+|--- .service 服务单元
+|
+|--- .mount 挂载单元
+|
+|--- .socket 套接字单元
+|
+|--- .timer 定时器单元
+|
+|--- .path 路径单元
+|  
+|--- .device 设备单元  
+|
+|--- ....其他类型单元 
+所有的服务都是单元,但不是所有的单元都是服务
+# 单元的状态
+- active: 激活,运行中
+- inactive: 未激活,没有运行
+- failed: 启动失败
+- activating: 正在启动中
+- deactivating: 正在停止中
+# systemctl控制Linux的重启,关机,挂起,休眠
+```bash
+systemctl reboot # 重启
+systemctl poweroff # 关机
+systemctl halt # 停止系统运行
+systemctl suspend # 挂起
+systemctl hibernate # 休眠,内存数据写入硬盘swap分区,整机断电,唤醒从硬盘读回
+```
+# 普通命令行程序 && 服务程序
+普通命令行程序: 在终端执行,运行-->输出结果-->程序退出
+eg: ls cd pwd命令
+
+服务程序(守护进程daemon): 常驻后台,不依赖终端,监听特定端口,等待数据包,持续处理
+eg: nginx服务 docker服务 sshd服务 mysql服务
+
+# systemctl命令
+systemctl命令用来: 管理所有单元
+```bash
+systemctl status                # 查看系统整体状态
+systemctl list-units            # 列出当前已加载的单元（活跃+非活跃）
+systemctl list-units --all      # 列出所有单元，包括没加载的
+systemctl list-units --type=service  # 只看服务类型单元
+systemctl list-unit-files       # 列出所有单元文件（磁盘上的，看开机是否启用）
+
+systemctl status ufw # 查看服务状态
+systemctl start ufw # 打开ufw服务
+systemctl stop ufw # 停止ufw服务
+systemctl restart ufw # 重启ufw服务
+systemctl enable ufw # 开机自启ufw服务
+systemctl disable ufw # 关闭ufw开机自启
+systemctl is-enabled ufw # 查看ufw是否开机自启
+
+systemctl mask nginx # 屏蔽服务
+systemctl unmask nginx # 解除屏蔽
+```
+# ufw服务
+UFW: 是Ubuntu常见的防火墙管理工具,用来管理入栈/出战网络规则
+```bash
+ufw status # 查看ufw规则的状态
+ufw status numbered # 显示规则编号
+
+ufw enbale # 执行ufw规则
+ufw disable # 关闭ufw规则
+
+ufw allow 22/tcp # 放行22/tcp端口
+ufw deny 22/udp # 拒绝22/udp端口
+ufw delete allow 8080/tcp # 删除放行22/tcp端口的规则
+ufw delete 1 # 按照编号删除规则
+ufw allow 8000:9000/tcp # 放行一个关口范围
+
+ufw default deny incoming # 默认拒绝入站流量
+ufw default allow outgoing # 默认允许出战规则
+
+ufw allow from 192.168.1.100
+ufw deny from 192.168.1.100 to any port 22 proto tcp
+ufw allow from 192.168.1.0/24
+
+```

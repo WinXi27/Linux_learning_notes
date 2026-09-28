@@ -1,0 +1,9 @@
+# 设置别名实现快速跳转目录
+```bash
+# 临时添加
+alias lin="cd $(pwd)" # 把跳转当前目录设置为别名lin
+
+# 永久添加(写入配置文件中)
+vim ~/.zshrc
+# 添加新内容 alias lin="cd /home/lixiang/github_/Linux_learning_notes"
+```

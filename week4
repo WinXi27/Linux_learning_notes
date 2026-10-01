@@ -1,5 +1,5 @@
 # 概念理解
-- 1.systemctl管理的是unit单元,但不是所有Linux服务都一松通过systemctl管理
+- 1.systemctl管理的是unit单元,但不是所有Linux服务都通过systemctl管理
 - 2.ufw是防火墙管理工具 ufw enable/disable 与 systemctl enable/disable ufw不一样 
 - 3.代理服务商: 购买代理服务商之后,服务商通常会提供一个订阅地址(subscription URL)
 - 订阅地址: 一个用来获取代理配置/节点信息的地址

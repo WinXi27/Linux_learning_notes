@@ -61,6 +61,9 @@ git push -u origin main # 首次绑定+推送
 
 关于日志
 git log # 查看git提交日志
+git log --oneline # 简介的显示提交历史
+git log --oneline --graph --decorate --all # 图形化显示所有提交
+git show HEAD # 查看最后一次提交
 
 关于恢复/撤销
 git restore test01.txt # 用暂存区文件覆盖工作区文件,原来工作区修改被舍弃

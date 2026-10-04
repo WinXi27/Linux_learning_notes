@@ -66,9 +66,9 @@ git restore test01.txt # 用暂存区文件覆盖工作区文件,原来工作区
 git restore . # 用暂存区文件恢复工作区文件
 git restore --staged test01.txt # 取消文件的add,工作区不变
 
-git reset HEAD 文件名 # 取消add 
-git reset HEAD . # 全部文件取消add
-git reset HEAD~1 # 撤销最近一次提交,代码保留
+git reset --soft HEAD~1 # 取消提交
+git reset --mixed HEAD~1(默认) # 取消提交和暂存
+git reset --hard HEAD~1 # 取消提交和暂存和工作区修改
 ```
 # 从github连接仓库的三种方式 
 https && ssh && github CLI

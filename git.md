@@ -27,7 +27,9 @@ Git是一个免费开源的**分布式版本控制系统**
 ## git command 
 ```bash
 关于配置
-git config --list # 查看所有配置 
+git config --list # 查看git所有配置
+git config --list | grep "user" # 查看git配置中user配置
+git config --list | grep "proxy" # 查看git配置中proxy配置
 git config --global user.name # 查看用户名
 git config --global user.email # 查看用户邮箱
 git config --global user.name "new_user_name" # 设置新的用户名

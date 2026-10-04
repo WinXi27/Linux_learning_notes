@@ -85,6 +85,7 @@ eg: git clone git@github.com:user/repo.git
 git的./.gitignore文件中存放着的都是不能被git追踪的文件(git add .的时候会自动忽略的文件)
 
 如果一个文件test01.txt之前提交过了,怎么才可以不被追踪?
-先创建./.gitignore文件,在这个文件中写入test01.txt文件名字
-之后,使用git rm --cached test01.txt将追踪的文件从git版本库移除
-
+- 创建./.gitignore文件,在这个文件中写入test01.txt文件名字
+- 执行git rm --cached test01.txt将追踪的文件从git版本库移除
+- 执行git add . 和 git commit 和 git push 同步到远程仓库
+  

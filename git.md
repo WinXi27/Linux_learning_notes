@@ -62,8 +62,9 @@ git push -u origin main # 首次绑定+推送
 git log # 查看git提交日志
 
 关于恢复/撤销
-git restore test01.md # 撤销修改
-git restore . # 撤销所有修改
+git restore test01.txt # 用暂存区文件覆盖工作区文件,原来工作区修改被舍弃
+git restore . # 用暂存区文件恢复工作区文件
+git restore --staged test01.txt # 取消暂存区的add,工作区不变
 git reset HEAD 文件名 # 取消add 
 git reset HEAD . # 全部文件取消add
 git reset HEAD~1 # 撤销最近一次提交,代码保留

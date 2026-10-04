@@ -23,7 +23,8 @@ scp ./file01.txt user_name@ip:/path # 文件传输
 ```
 # git
 Git是一个免费开源的**分布式版本控制系统**
-![alt text](image.png)
+工作区   →   暂存区   →   本地仓库  →   远程仓库
+       add         commit        push
 ## git command 
 ```bash
 关于配置
@@ -68,7 +69,7 @@ git restore --staged test01.txt # 取消文件的add,工作区不变
 
 git reset --soft HEAD~1 # 取消提交
 git reset --mixed HEAD~1(默认) # 取消提交和暂存
-git reset --hard HEAD~1 # 取消提交和暂存和工作区修改
+git reset --hard HEAD~1 # 取消提交和暂存和工作区修改(全部删除了)
 ```
 # 从github连接仓库的三种方式 
 https && ssh && github CLI

@@ -81,3 +81,10 @@ https && ssh && github CLI
 ## ssh
 用密钥连接github
 eg: git clone git@github.com:user/repo.git
+# ./.gitignore文件
+git的./.gitignore文件中存放着的都是不能被git追踪的文件(git add .的时候会自动忽略的文件)
+
+如果一个文件test01.txt之前提交过了,怎么才可以不被追踪?
+先创建./.gitignore文件,在这个文件中写入test01.txt文件名字
+之后,使用git rm --cached test01.txt将追踪的文件从git版本库移除
+

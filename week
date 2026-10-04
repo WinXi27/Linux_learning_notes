@@ -1,3 +1,4 @@
+# week4
 # 概念理解
 - 1.systemctl管理的是unit单元,但不是所有Linux服务都通过systemctl管理
 - 2.ufw是防火墙管理工具 ufw enable/disable 与 systemctl enable/disable ufw不一样 
@@ -125,3 +126,114 @@ ufw deny from 192.168.1.100 to any port 22 proto tcp
 ufw allow from 192.168.1.0/24
 
 ```
+# week5
+# 设置别名实现快速跳转目录
+```bash
+# 临时添加
+alias lin="cd $(pwd)" # 将当前工作目录
+
+# 永久添加()
+vim ~/.zshrc # 把别名写进配置文件
+source ~/.zshsrc
+```
+# Linux目录结构
+- /etc 系统/软件全局配置文件
+- /tmp/ 临时文件
+- /home 普通用户家目录
+- /root root用户家目录
+- /var/ 日志+缓存+软件运行数据...
+- /usr/ 用户空间的程序+程序库+共享资源
+- /sys/ 内核动态提供的设备与内核信息
+# 常见文件类型
+- f file普通文件
+- d directory文件夹
+- l symlink软链接
+- b block 块设备
+- c char字符设备
+- p pipe管道文件
+- s socket文件
+# Linux命令
+```bash
+which docker # 查看可执行文件实际存放位置
+
+find / -type d -name "*.txt*" -mindepth 3
+find /etc/ -type f -iname "*.txt*" 
+find /etc/ -type d -maxdepth 1 -path "*/.ssh/*" -size +100M -user lixiang -group group01 -perm 644
+
+grep "port" file01.txt
+grep "POrt" -i -n file01.txt
+grep -c "Linux" file01.txt # 输出匹配的行数
+
+cat -n file01.txt # 显示行号
+cat -b file01.txt # 只给非空的行编号
+
+命令 > output.txt # 将命令的执行结果输出到文件
+命令 < input.txt # 把文件内容船体给命令
+命令 >> output.txt # 追加命令输出到文件末尾
+命令 2> error.txt # 将命令的错误信息保到文件 
+cat < output.txt # 将output.txt的内容作为输入
+
+whoami
+who 
+w
+tty
+id
+id user01
+groups 
+groups user01
+useradd -m -s /bin/zsh user01
+useradd --create-home -s /bin/zsh user01
+userdel user01
+userdel -r user01
+groupadd group01
+groupsdel group01
+passwd 
+passwd user01
+usermod -aG group01 user01
+usermod -s /bin/zsh user01 
+
+```
+# 关于进程管理命令
+```bash
+ps # 查看当前终端的所有进程
+ps -ef # 查看系统的所有进程
+pgrep sleep # 查找系统进程中名字为sleep的进程
+pgrep -p 进程的PID # 查找进程ID对应的进程
+pgrep -a -u lixiang # 查找进程关联用户是lixiang的进程的详细信息
+jobs # 查看当前终端的任务
+fg %1 # 把当前终端任务编号为1的任务拿到前台运行
+bg %1 # 把后台编号为1的任务在后天继续运行
+nohup 命令 # 执行命令,忽略终端的终止信号
+命令 & # 把命令在后台运行
+nice -n 20 "命令" # 执行命令,并把命令的nice值设置为20
+renice -n 20 -p 进程PID # 把进程PID的nice重新设置为20
+renice -n 20 -u lixiang # 把关联用户为lixiang的进程的nice值设置为20
+
+lsof # 列出系统全部打开的文件 (lsof,list open file)
+lsof -i :8080 # 查看占用8080端口的进程
+lsof -p PID # 查看该进程打开的所有文件
+lsof -u lixiang # 查看lixiang所有进程打开的文件
+lsof test01.txt # 查看占用文件的进程
+
+kill $(lsof -t test01.txt) # 杀死所有打开test01.txt文件的进程
+kill $(lsof -t -u lixiang test01.txt -a) # 杀掉,用户lixiang打开test01.txt文件的进程(-a是and的意思)
+kill $(lsof -t -i :8080) # 杀死,占用8080端口的进程
+
+time 命令 # 查看运行命令消耗的时间与系统资源
+# 输出指标
+real 从程序开始到程序结束的时间
+user 你的程序在用户空间消耗CPU的时间
+sys 你的程序调用操作系统内核功能,内核代码消耗CPU时间
+
+timeout 5 sleep 3 # 给程序设置最大运行时间,超时直接杀死
+
+watch -n 2 命令 # 执行命令按照每2秒执行一次(默认是2秒)
+
+systemctl cat ssh # 查看某一个服务实际使用配置
+```
+# 进程的状态
+- R 运行
+- S 睡眠
+- D 深度等待I/O
+- T 停止
+- Z 僵尸

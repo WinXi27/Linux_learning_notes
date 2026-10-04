@@ -152,33 +152,43 @@ passwd
 passwd user01
 usermod -aG group01 user01
 usermod -s /bin/zsh user01 
-
 ```
 # 关于进程管理命令
 ```bash
-ps # 查看当前终端的所有进程
-ps -ef # 查看系统的所有进程
-pgrep sleep # 查找系统进程中名字为sleep的进程
-pgrep -p 进程的PID # 查找进程ID对应的进程
-pgrep -a -u lixiang # 查找进程关联用户是lixiang的进程的详细信息
-jobs # 查看当前终端的任务
-fg %1 # 把当前终端任务编号为1的任务拿到前台运行
-bg %1 # 把后台编号为1的任务在后天继续运行
-nohup 命令 # 执行命令,忽略终端的终止信号
-命令 & # 把命令在后台运行
-nice -n 20 "命令" # 执行命令,并把命令的nice值设置为20
-renice -n 20 -p 进程PID # 把进程PID的nice重新设置为20
-renice -n 20 -u lixiang # 把关联用户为lixiang的进程的nice值设置为20
+ps # 查看当前终端所有进程
+ps -ef # 查看系统所有进程
 
-lsof # 列出系统全部打开的文件 (lsof,list open file)
+pgrep -a sleep # 在系统进程中,查找命令名有sleep字段的所有进程,-a是显示详细信息
+pgrep -f "sleep 100" # 在系统进程中,查找命令名字匹配完整字段"sleep 100",sleep 1000也会被匹配
+pgrep -p PID # 查找PID对应的进程
+pgrep -u lixiang # 查找关联用户为lixiang的所有进程
+pkill sleep # 杀死pgrep sleep的结果
+pkill -f "sleep 100" # 杀死pgrep -f "sleep 100"的结果
+
+jobs # 查看当前终端后台运行的的任务
+fg %1 # 将后台编号为1的任务拿到前台运行
+bg %2 # 将后台编号为2的任务在后台继续运行
+nohup 需要执行的命令 & # 执行命令,忽略当前终端的终止信号,当当前终端关闭时,还在后台继续运行
+需要执行的命令 & # 将命令在后台运行
+
+nice -n 18 需要执行的命令 # 执行命令,并设置nice值为18 
+renice -n 18 -p PID # 给PID这个进程重新设置nice值
+renice -n 18 -u lixiang # 把关联用户是lixiang的进程nice值设置为18
+
+kill PID # 杀死PID这个进程
+kill %1 # 杀死编号为1的后台任务
+killall sleep # 杀死进程名字是sleep的所有进程
+pkill sleep # 杀死pgrep sleep的显示结果
+
+lsof # 列出系统全部打开的文件
 lsof -i :8080 # 查看占用8080端口的进程
-lsof -p PID # 查看该进程打开的所有文件
+lsof -p PID # 查看PID进程打开的文件
 lsof -u lixiang # 查看lixiang所有进程打开的文件
-lsof test01.txt # 查看占用文件的进程
+lsof test01.txt # 查看打开test01.txt文件的所有进程
 
-kill $(lsof -t test01.txt) # 杀死所有打开test01.txt文件的进程
-kill $(lsof -t -u lixiang test01.txt -a) # 杀掉,用户lixiang打开test01.txt文件的进程(-a是and的意思)
-kill $(lsof -t -i :8080) # 杀死,占用8080端口的进程
+kill $(lsof -t test01.txt) # 杀死所有打开test01.txt文件的进程,-t是terse精简模式
+kill $(lsof -t -u lixiang test01.txt -a) # 杀死,用户lixiang打开test01.txt文件的进程,-a是and意思
+kill $(lsof -i :8080) # 杀死占用:8080端口的进程
 
 time 命令 # 查看运行命令消耗的时间与系统资源
 # 输出指标

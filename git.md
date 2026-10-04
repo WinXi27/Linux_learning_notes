@@ -34,6 +34,8 @@ git config --global user.name # 查看用户名
 git config --global user.email # 查看用户邮箱
 git config --global user.name "new_user_name" # 设置新的用户名
 git config --global user.emali "new_user_email" # 设置新的用户邮箱
+git config --global http.proxy "http://192.168.137.1:7890" # 设置http代理 
+git config --global --unset http.proxy # 不设置http.proxy
 
 关于远程仓库
 git remote -v # 查看verbose远程仓库信息

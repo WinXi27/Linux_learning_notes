@@ -46,17 +46,21 @@ clash客户端导入+解析订阅地址
 ```bash
 systemctl reboot # 重启
 systemctl poweroff # 关机
-systemctl halt # 停止系统运行
 systemctl suspend # 挂起,系统状态保存在内存
 systemctl hibernate # 休眠,内存数据写入硬盘swap分区,整机断电,唤醒从硬盘读回
 ```
-# 普通命令行程序 && 服务程序
-普通命令行程序: 在终端执行,运行-->输出结果-->程序退出
-eg: ls cd pwd命令
-
-服务程序(守护进程daemon): 常驻后台,不依赖终端,监听特定端口,等待数据包,持续处理
-eg: nginx服务 docker服务 sshd服务 mysql服务
-
+# 一次性命令程序&&常驻后台程序
+一次性命令程序: 
+- shell创建子进程,启动程序
+- 程序运行,输出结果到终端
+- 任务完成,进程主动退出
+- 内核回收进程资源,回到shell提示符,可以继续输入下一条命令
+服务程序:
+- 进程启动,初始化资源  
+- 收到无限循环:等待事件/连接请求
+- 收到请求,处理任务
+- 处理完成,不退出,继续等待下一个请求
+- 除非收到停止信号(systemctl stop XXX/kill),否则持续运行
 # systemctl命令
 systemctl命令用来: 管理所有单元
 ```bash
@@ -190,21 +194,29 @@ kill $(lsof -t test01.txt) # 杀死所有打开test01.txt文件的进程,-t是te
 kill $(lsof -t -u lixiang test01.txt -a) # 杀死,用户lixiang打开test01.txt文件的进程,-a是and意思
 kill $(lsof -i :8080) # 杀死占用:8080端口的进程
 
-time 命令 # 查看运行命令消耗的时间与系统资源
+time 命令 # 查看命令运行消耗的时间
 # 输出指标
 real 从程序开始到程序结束的时间
-user 你的程序在用户空间消耗CPU的时间
-sys 你的程序调用操作系统内核功能,内核代码消耗CPU时间
+user CPU处于用户态时间
+sys CPU处于内核态时间
 
 timeout 5 sleep 3 # 给程序设置最大运行时间,超时直接杀死
 
 watch -n 2 命令 # 执行命令按照每2秒执行一次(默认是2秒)
+watch 命令 # 每2秒执行一次后面的命令
 
 systemctl cat ssh # 查看某一个服务实际使用配置
 ```
 # 进程的状态
-- R 运行
-- S 睡眠
-- D 深度等待I/O
-- T 停止
-- Z 僵尸
+- R running 运行
+- S sleep 可中断睡眠,可以被信号唤醒
+- D 不可等待睡眠
+- T stop停止
+- Z zombie僵尸进程
+# 下面是week6
+# git命令
+# docker命令
+```bash
+
+
+```

@@ -4,16 +4,13 @@ docker是开源的容器化平台
 ```bash
 docker --version # 查看docker版本
 docker info # 查看系统信息
-docker images # 查看所有本地镜像
-docker search nginx # 搜索镜像,默认是latest
-docker pull nginx # 拉取镜像
-docker pull nginx:1.25 # 指定拉取镜像的版本
-docker images -q # 查看所有镜像只有ID
-docker rmi nginx # 删除镜像
-docker rmi 镜像ID # 更具镜像ID删除镜像
+docker images # 查看本地镜像
+docker search nginx # 在官方搜索镜像
+docker pull nginx:1.2 # 拉取镜像文件到本地
+docker rmi nginx/镜像ID # 删除镜像
 docker ps # 查看正在运行的容器
-docker ps -a # 查看所有容器(运行+已停止)
-docker ps -aq # 查看所有容器,但是只打印容器ID
+docker ps -a # 查看所有容器
+docker ps -aq # 查看所有容器,并只打印容器ID
 ```
 # 运行/进入/删除 容器
 ```bash
@@ -33,19 +30,26 @@ docker run -it --rm --name "centos01" centos /bin/bash # 交互式进入centos�
 docker exec -it nginx01 /bin/bash # 进入正在运行的容器
 
 docker stop nginx01 # 停止运行nginx01容器
-docker kill nginx01 # 强制杀死nginx1容器
+docker kill nginx01 # 强制杀死nginx01容器
 docker start nginx01 # 启动nginx01容器
-docker restart nginx01 # 重启nginx01容器
+docker restart nginx01 #重启nginx01容器
 docker rm nginx01 # 删除停止的容器
-docker rm -f nginx01 # 强制删除运行中的容器
-docker rm -f $(docker ps -aq) # 一次性删除所有容器
+docker rm -f nginx01 # 强制删除正在运行中的容器
+docker rm -f $(docker ps -aq) # 删除所有容器
 
 docker inspect my_nginx 查看my_nginx的json文件
 ```
 # 导入导出镜像
 ```bash
-docker save -o nginx.tar nginx:1.25 # 导出镜像为压缩包
-docker load -i nginx.tar # 本地导入镜像
+docker save nginx:1.25 > nginx.tar # 本地镜像--->.tar文件
+docker load < nginx.tar # .tar文件--->本地镜像
+
+docker export web > web.tar # 将容器文件系统导出为.tar文件
+docker import web.tar my_web:v1 # .tar文件导出为新的镜像
+```
+# docker镜像标签
+```bash
+docker tag nginx:latest nginx:1234
 ```
 # docker日志
 ```bash

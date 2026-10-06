@@ -28,36 +28,33 @@ Git是一个免费开源的**分布式版本控制系统**
 ## git command 
 ```bash
 关于配置
-git config --list # 查看git所有配置
-git config --list | grep "user" # 查看git配置中user配置
-git config --list | grep "proxy" # 查看git配置中proxy配置
-git config --global user.name # 查看用户名
-git config --global user.email # 查看用户邮箱
-git config --global user.name "new_user_name" # 设置新的用户名
-git config --global user.emali "new_user_email" # 设置新的用户邮箱
-git config --global http.proxy "http://192.168.137.1:7890" # 设置http代理 
-git config --global --unset http.proxy # 不设置http.proxy
+git config --list 
+git config --list | grep "user"
+git config --list | grep "proxy"
+git config --global user.name "设置新的用户名"
+git config --global user.email "设置新的用户邮箱"
+git config --global http.proxy "设置新的http代理地址"
+git config --global https.proxy "设置新的https代理地址"
+git config --global --unset http.proxy
 
 关于远程仓库
-git remote -v # 查看verbose远程仓库信息
-git remote add 别名 "仓库地址" # 添加新的远程仓库
-git remote set-url 别名 "仓库地址" # 设置远程仓库地址(原来已经存在的仓库)
+git remote 
+git remote -v
+git remote add "远程仓库别名" "远程仓库地址"
+git remote set-url "需要修改的远程仓库别名" "新的远程仓库地址"
 
 关于工作流程
-git init # 把当前文件夹初始化为git仓库
-git status # 查看git状态
-git clone "url" # 克隆地址
-git branch b01 && git switch b01 # 创建b01分支&&切换到b01分支
-git switch -c b01 # 切换到b01分支,-c自动create
-git add . # 把工作区的所有修改全部都加入暂存区
-git add test01.md test02.md # 把工作区的test01.md和test02.md添加到暂存区
-git commit -m "提交备注" # 把暂存区的所有修改全部提交到本地
-git merge "b01" # 把指定分支与main分支合并
-
-关于push命令
-git push origin main # 指定远程别名,分支推送
-git push # 分支需要已经绑定upstream
-git push -u origin main # 首次绑定+推送
+git init 
+git status
+git clone "url"
+git branch b01 && git switch b01
+git switch -c b01
+git add .
+git commit -m "备注" 
+git merge b01
+git push -u origin main 
+git push origin main 
+git push 
 
 关于日志
 git log # 查看git提交日志
@@ -66,13 +63,11 @@ git log --oneline --graph --decorate --all # 图形化显示所有提交
 git show HEAD # 查看最后一次提交
 
 关于恢复/撤销
-git restore test01.txt # 用暂存区文件覆盖工作区文件,原来工作区修改被舍弃
-git restore . # 用暂存区文件恢复工作区文件
-git restore --staged test01.txt # 取消文件的add,工作区不变
-
+git restore test01.txt # 使用暂存区文件恢复test01.txt文件
+git restore --staged test01.txt # 取消test01.txt的暂存
 git reset --soft HEAD~1 # 取消提交
-git reset --mixed HEAD~1(默认) # 取消提交和暂存
-git reset --hard HEAD~1 # 取消提交和暂存和工作区修改(全部删除了)
+git reset HEAD~1 # 取消提交,取消暂存
+git reset --hard HEAD~1 # 取消提交,取消暂存,取消修改
 ```
 # 从github连接仓库的三种方式 
 https && ssh && github CLI

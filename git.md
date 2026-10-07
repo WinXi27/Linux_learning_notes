@@ -84,6 +84,3 @@ git的./.gitignore文件中存放着的都是不能被git追踪的文件(git add
 - 执行git rm --cached test01.txt将追踪的文件从git版本库移除
 - 执行git add . 和 git commit 和 git push 同步到远程仓库
   
-# git冲突
-当两个分支(你的本地main和别人的分支)修改了同一个文件的同一处位置,合并时git无法自动判断保留那一份,就会产生冲突
-产生冲突后手动编辑文件,删掉冲突标记,写好最终内容,然后git add .和git commit和git push 

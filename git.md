@@ -71,6 +71,10 @@ git restore --staged test01.txt # 取消test01.txt的暂存
 git reset --soft HEAD~1 # 取消提交
 git reset HEAD~1 # 取消提交,取消暂存
 git reset --hard HEAD~1 # 取消提交,取消暂存,取消修改
+
+# 设置忽略文件
+# 创建.gitignore文件,写入需要忽略的文件名
+
 ```
 # 从github连接仓库的三种方式 
 https && ssh && github CLI

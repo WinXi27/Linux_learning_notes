@@ -22,12 +22,13 @@ ssh user_name@ip "ls" # 远程执行命令
 scp ./file01.txt user_name@ip:/path # 文件传输
 ```
 # git
-Git是一个免费开源的**分布式版本控制系统**
+Git是一个免费开源的 分布式版本控制系统
 工作区   →   暂存区   →   本地仓库  →   远程仓库
        add         commit        push
 ## git command 
 ```bash
 关于配置
+git --version 
 git config --list 
 git config --list | grep "user"
 git config --list | grep "proxy"
@@ -42,6 +43,7 @@ git remote
 git remote -v
 git remote add "远程仓库别名" "远程仓库地址"
 git remote set-url "需要修改的远程仓库别名" "新的远程仓库地址"
+git remote remove origin # 删除绑定的远程仓库 
 
 关于工作流程
 git init 

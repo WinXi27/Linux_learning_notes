@@ -74,7 +74,12 @@ git reset HEAD~1 # 取消提交,取消暂存
 git reset --hard HEAD~1 # 取消提交,取消暂存,取消修改
 
 # 设置忽略文件
-# 创建.gitignore文件,写入需要忽略的文件名
+创建.gitignore文件,写入需要忽略的文件名
+使用git rm --cached test01.txt 让git忽略test01.txt文件
+
+git rebase main # 在分支中,重新设置该分支的基
+git rebase --continue # 处理完冲突,继续rebase
+git rebase --abort # 取消rebase
 
 ```
 # 从github连接仓库的三种方式 

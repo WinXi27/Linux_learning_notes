@@ -58,6 +58,7 @@ git push -u origin main
 git push origin main 
 git push 
 git diff test01.txt # 比较工作区文件与暂存区文件不同点
+git diff --staged test01.txt # 比较暂存区与HEAD
 
 关于日志
 git log # 查看git提交日志

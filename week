@@ -5,13 +5,10 @@
 - 2.ufw是防火墙管理工具 ufw enable/disable 与 systemctl enable/disable ufw不一样 
 # 订阅代理
 ## 订阅+代理使用 流程
-- 1.购买订阅 ---> 获得订阅地址
-- 2.导入clash ---> 解析配置并选择节点
-- 3.开启系统代理 ---> 支持系统代理的软件流量进入clash
-- 4.选择模式:
-全局: 全部走代理
-规则: 按规则分流
-直连: 不走代理
+- 1.购买订阅--->获取订阅地址
+- 2.在代理客户端(clash/v2rayn...)导入订阅地址
+- 3.打开系统代理--->对于所有支持系统代理的软件流量(可选 全局or直连or规则)
+- 
 ## 其他设备使用代理
 - clash打开允许局域网连接
 - 在其他设备设置:
@@ -211,10 +208,19 @@ systemctl cat ssh # 查看某一个服务实际使用配置
 - D 不可等待睡眠
 - T stop停止
 - Z zombie僵尸进程
+- 
 # 下面是week6
 # git命令
 # docker命令
-```bash
 
+# 下面是week7
+node.js : openclaw的运行环境
+npm(node package manager , node的包管理器) : 安装和管理node.js软件的工具
+openclaw : 运行在node.js软件中的应用程序
+telegram : 与openclaw对话的一种可选入口
+kimi_API : 为openclaw提供提供的"大脑" 
 
-```
+node.js : 一种运行环境
+npm(node package manager) : node的包管理器
+nvm(node version manager) : 用来管理node
+ 

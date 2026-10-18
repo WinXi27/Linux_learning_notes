@@ -224,3 +224,16 @@ node.js : 一种运行环境
 npm(node package manager) : node的包管理器
 nvm(node version manager) : 用来管理node
  
+# openclaw
+```bash
+openclaw gateway status # 查看网关状态
+openclaw gateway restart # 重启网关
+openclaw models status # 查看模型状态
+openclaw models list --provider moonshot # 查看moonshot模型状态
+openclaw status # 查看openclaw状态
+openclaw doctor # 检查并且修改环境问题
+openclaw models set moonshot/kimi.k2.6 # 设置默认模型
+openclaw gateway install # 安装网关
+openclaw models auth list # API密钥管理
+
+```

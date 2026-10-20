@@ -154,21 +154,21 @@ usermod -s /bin/zsh user01
 ```
 # 关于进程管理命令
 ```bash
-ps # 查看当前终端所有进程
-ps -ef # 查看系统所有进程
-
-pgrep -a sleep # 在系统进程中,查找命令名有sleep字段的所有进程,-a是显示详细信息
-pgrep -f "sleep 100" # 在系统进程中,查找命令名字匹配完整字段"sleep 100",sleep 1000也会被匹配
-pgrep -p PID # 查找PID对应的进程
+ps 
+ps -ef
+ps PID
+pgrep sleep
+pgrep -a sleep
+pgrep -f "sleep 1"
+pgrep -fx "sleep 100"
 pgrep -u lixiang # 查找关联用户为lixiang的所有进程
-pkill sleep # 杀死pgrep sleep的结果
-pkill -f "sleep 100" # 杀死pgrep -f "sleep 100"的结果
+pkill 
 
-jobs # 查看当前终端后台运行的的任务
-fg %1 # 将后台编号为1的任务拿到前台运行
-bg %2 # 将后台编号为2的任务在后台继续运行
-nohup 需要执行的命令 & # 执行命令,忽略当前终端的终止信号,当当前终端关闭时,还在后台继续运行
-需要执行的命令 & # 将命令在后台运行
+jobs 
+fg %1 
+bg %2
+nohup 需要执行的命令 & 
+需要执行的命令 & 
 
 nice -n 18 需要执行的命令 # 执行命令,并设置nice值为18 
 renice -n 18 -p PID # 给PID这个进程重新设置nice值
@@ -235,5 +235,80 @@ openclaw doctor # 检查并且修改环境问题
 openclaw models set moonshot/kimi.k2.6 # 设置默认模型
 openclaw gateway install # 安装网关
 openclaw models auth list # API密钥管理
+```
+# week8
+# 内存指标
+mem_total : 内存总量
+mem_used : 内存已经被使用的大小
+mem_free : 内存空闲大小
+mem_availbale : 新程序可用的大小
+mem_buff/cache : 内存中的缓冲区
+# swap分区
+swap_total : swap分区总量
+swap_used : swap中已经被使用的大小
+swap_free : swap分区中空闲大小
+swap_in(si) : 输入内存的速度
+swap_out(so) : 输出到swap分区的速度
+# vmstat指标
+```bash
+# procs
+r : 等待分配CPU的进程数量
+b : 阻塞进程数量
+
+# mem
+swapd : swap_used大小
+free : mem_free空闲大小
+buff : mem_buff块设备缓冲区大小
+cache : mem_cache缓冲区大小
+
+# swap
+si : swap_in_speed
+so : swap_out_speed
+
+# io
+bi : block_in_speed
+bo : block_out_speed
+
+# system
+in : interrupt_cnt每秒中断次数
+cs : context_switch每秒进程上下文求换次数
+
+# cpu
+us : 执行用户程序的占比
+sy : system_cpu内核态CPU占比
+id : idle就是空闲CPU占比
+wa : wait等待CPU占比
+st : steal_time 被偷走的cpu时间
 
 ```
+# 进程=程序段+数据段+PCB信息
+
+# 进程的状态转换
+进程状态转换由进程的控制原语实现,原语具有原子性,执行时屏蔽中断信号
+状态转换的核心:
+- 更改PCB信息
+- 将PCB插入合适队列
+- 分配/回收资源
+
+进程状态转换由原语(原语是内核中一段不可分割的程序段)实现,靠关中断+开中断实现
+关中断-->执行原语操作(该PCB,挪队列,保存现场)-->开中断
+开中断和关中断只有处于内核态的CPU才可以执行的指令
+## 创建原语
+申请空白PCB,初始化PCB
+为新的进程分配所需资源
+将PCB插入就绪队列
+## 撤销原语
+找到该进程PCB,若有CPU需要剥夺CPU
+终止其所有子进程
+将该进程的所有资源归还给父进程/操作系统
+删除PCB
+进程上下文: 进程恢复继续执行所需要的全部运行环境,状态信息
+# 进程之间的通信
+进程是操作系统资源分配的最小单位
+
+每个进程拥有独立的虚拟地址空间,进程之间隔离,一个进程无法直接访问另一个进程的内存资源
+如果进程只见那需要传递数据,需要借助操作系统提供的进程间通信机制实现
+
+共享存储 
+消息传递(直接通信方式,间接通信方式)
+管道通信(一个管道文件是一个方向通信)写满或者为空,都会阻塞
